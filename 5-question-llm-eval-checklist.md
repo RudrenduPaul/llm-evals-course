@@ -89,4 +89,4 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 ---
 
-**Sources:** Position bias and verbosity bias in LLM-as-judge are documented in Zheng et al. (2023), "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023 ([arxiv.org/abs/2306.05685](https://arxiv.org/abs/2306.05685)). Self-preference bias is documented in Panickssery et al. (2024), "LLM Evaluators Recognize and Favor Their Own Generations" ([arxiv.org/abs/2410.21819](https://arxiv.org/abs/2410.21819)).
+**Sources:** Position bias and verbosity bias in LLM-as-judge are documented in Zheng et al. (2023), "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023 ([arxiv.org/abs/2306.05685](https://arxiv.org/abs/2306.05685)). Self-preference bias is documented in Panickssery et al. (2024), "LLM Evaluators Recognize and Favor Their Own Generations" ([arxiv.org/abs/2404.13076](https://arxiv.org/abs/2404.13076)).
