@@ -1,0 +1,13 @@
+# Statistical Testing for LLM Evals — companion notebooks
+# Python 3.10+ recommended. All notebooks run on synthetic data; no API keys required.
+#
+# Versions are pinned at the MAJOR level: the upper bound locks out the next
+# breaking major release, while minor and patch updates float so the code keeps
+# working when executed. Lower bounds are set wide enough to run on Google Colab
+# (which lags a release or two) as well as a current local install.
+numpy>=1.24,<3
+pandas>=2.0,<4
+scipy>=1.10,<2
+statsmodels>=0.14,<0.15
+matplotlib>=3.6,<4
+seaborn>=0.12,<0.14

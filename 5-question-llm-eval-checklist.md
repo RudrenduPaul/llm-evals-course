@@ -1,0 +1,92 @@
+# The 5-Question LLM Eval Checklist
+
+**Before you ship, ask these five questions.**
+
+Use this checklist before promoting any LLM change to production. Each question targets a specific failure mode that offline evals routinely miss. If any red flag fires, stop and fix the underlying problem before shipping.
+
+---
+
+## Q1: Was the experiment properly randomized?
+
+**What to check:**
+- Does a valid control group exist, with no treatment applied?
+- Are test cases randomly assigned to conditions, not selected by convenience or recency?
+- Could selection bias explain the result? (Curated "hard" examples, cherry-picked failure cases, or dev-team-authored prompts all introduce it.)
+
+**Red flag:** The test set came from examples the team already knew the model struggled with, or from examples where it succeeded. Neither is a random sample.
+
+**If the check fails:** Reconstruct the eval set by random sampling from production logs. If no production logs exist, draw from a representative distribution of expected query types and document the sampling methodology explicitly.
+
+---
+
+## Q2: Does the metric actually measure what matters?
+
+**What to check:**
+- Is the eval metric a direct measure of user satisfaction, or a proxy that correlates with it only loosely?
+- Has the metric been validated against real production outcomes? (For example: does a higher ROUGE score actually predict that users prefer the output?)
+- Could a model change improve the metric without improving the actual user experience?
+
+**Red flag:** No one has cross-validated the metric against human preference data, user ratings, or downstream task completion rates. You are optimizing a number with no confirmed link to user value.
+
+**If the check fails:** Run a human evaluation on a stratified sample (minimum 100 examples) to calibrate the metric against direct human judgment before using it as a gating criterion.
+
+---
+
+## Q3: Was the sample large enough?
+
+**What to check:**
+- How many test cases were used? Fewer than 200 is almost always insufficient for detecting meaningful improvements.
+- What effect size can this sample detect at 80% statistical power? A sample of 50 examples yields roughly 20% power for small effects. You need 200+ for moderate effects and 800+ to reliably detect small improvements.
+- Did someone run a power calculation, or was the sample size chosen arbitrarily?
+
+**Red flag:** The eval ran on fewer than 100 examples and the reported improvement is smaller than 5 percentage points. At that scale, the result is consistent with noise.
+
+**If the check fails:** Do not ship based on the current result. Run a prospective power analysis, collect the required sample, and re-evaluate. Document the power calculation alongside the results.
+
+---
+
+## Q4: Is the judge biased?
+
+**What to check:**
+- If using LLM-as-judge: has position bias been tested? Swap the A/B order and check whether the winner changes.
+- Has verbosity bias been assessed? LLM judges systematically prefer longer outputs regardless of quality.
+- Is self-preference bias present? A model judging outputs from its own model family will favor those outputs over outputs from a different architecture.
+
+**Red flag:** The same model family serves as both the system under test and the judge, and position bias testing has not been run. Any result from this setup is unreliable.
+
+**If the check fails:** Add a position-swap test (run every comparison twice with order reversed and take the majority vote), strip outputs to similar length before presenting to the judge, or switch to a judge from a different model family. Calibrate the judge against human labels on at least 50 examples.
+
+---
+
+## Q5: Will this offline result survive production?
+
+**What to check:**
+- Does the eval dataset reflect real production queries, including edge cases, multilingual inputs, adversarial phrasings, and length distribution?
+- Has the system been tested under production constraints: latency budgets, context window limits, concurrent request load, and retrieval latency for RAG pipelines?
+- Is there evidence of eval gaming? The metric improves, but qualitative review of outputs reveals degradation in dimensions the metric does not capture.
+
+**Red flag:** The eval set was authored by the development team without sampling from production logs, and the system has never run under realistic latency or load conditions.
+
+**If the check fails:** Run a shadow deployment or a staged rollout with real traffic before full promotion. Establish a monitoring baseline on the production metric (user ratings, task completion, escalation rate) and set an alert threshold before you ship.
+
+---
+
+## Quick reference
+
+| Question | Core risk | Minimum bar |
+|---|---|---|
+| Proper randomization? | Selection bias inflates results | Random sample from prod logs or documented distribution |
+| Metric measures what matters? | Proxy optimization with no user benefit | Validated against human judgment |
+| Sample large enough? | Noise mistaken for signal | 200+ examples; 800+ for small effects |
+| Judge is unbiased? | Systematic preference for length or model family | Position swap + cross-family judge |
+| Offline result survives production? | Eval gaming; distribution shift | Shadow deployment or staged rollout |
+
+---
+
+*From the O'Reilly Live Course: **"Statistical Testing for LLM Evaluations: Design Experiments that Detect Real Improvements"** by Rudrendu Paul and Lorenzo Toni.*
+
+*Companion book: **Statistical Evaluation Methods for AI Systems** by Rudrendu Paul and Lorenzo Toni (O'Reilly, forthcoming): 12 chapters, 3 appendices, runnable Python notebooks per chapter.*
+
+---
+
+**Sources:** Position bias and verbosity bias in LLM-as-judge are documented in Zheng et al. (2023), "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023 ([arxiv.org/abs/2306.05685](https://arxiv.org/abs/2306.05685)). Self-preference bias is documented in Panickssery et al. (2024), "LLM Evaluators Recognize and Favor Their Own Generations" ([arxiv.org/abs/2410.21819](https://arxiv.org/abs/2410.21819)).
