@@ -57,11 +57,11 @@ These notebooks preview a slice of *Statistical Evaluation Methods for AI System
 
 ---
 
-## Further reading
+## Further reading (all O'Reilly)
 
-- *Evals for AI Engineers*, Shreya Shankar and Hamel Husain (O'Reilly, 2024)
+- *Practical Statistics for Data Scientists*, Peter Bruce, Andrew Bruce, and Peter Gedeck (O'Reilly)
+- *Evals for AI Engineers*, Shreya Shankar and Hamel Husain (O'Reilly, 2026)
 - *AI Engineering: Building Applications with Foundation Models*, Chip Huyen (O'Reilly, 2025)
-- *Trustworthy Online Controlled Experiments*, Ron Kohavi, Diane Tang, Ya Xu (Cambridge, 2020)
 
 ---
 

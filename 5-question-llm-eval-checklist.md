@@ -83,10 +83,13 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 ---
 
-*From the O'Reilly Live Course: **"Statistical Testing for LLM Evaluations: Design Experiments that Detect Real Improvements"** by Rudrendu Paul and Lorenzo Toni.*
+*From the O'Reilly Live Course: **"Statistical Testing for LLM Evaluations: Design Experiments to Measure Gen AI Features at Scale"** by Rudrendu Paul and Lorenzo Toni.*
 
 *Companion book: **Statistical Evaluation Methods for AI Systems** by Rudrendu Paul and Lorenzo Toni (O'Reilly, forthcoming): 12 chapters, 3 appendices, runnable Python notebooks per chapter.*
 
 ---
 
-**Sources:** Position bias and verbosity bias in LLM-as-judge are documented in Zheng et al. (2023), "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023 ([arxiv.org/abs/2306.05685](https://arxiv.org/abs/2306.05685)). Self-preference bias is documented in Panickssery et al. (2024), "LLM Evaluators Recognize and Favor Their Own Generations" ([arxiv.org/abs/2404.13076](https://arxiv.org/abs/2404.13076)).
+**Sources:**
+
+- Position bias and verbosity bias in LLM-as-judge: Zheng et al. (2023), "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023 ([arxiv.org/abs/2306.05685](https://arxiv.org/abs/2306.05685)).
+- Self-preference bias: Panickssery et al. (2024), "LLM Evaluators Recognize and Favor Their Own Generations" ([arxiv.org/abs/2404.13076](https://arxiv.org/abs/2404.13076)).
