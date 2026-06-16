@@ -1,8 +1,8 @@
-# Statistical Testing for LLM Evals
+# Statistical Testing for LLM Evaluations
 
-### Design experiments that detect real improvements
+### Design Experiments to Measure Gen AI Features at Scale
 
-Companion notebooks for the O'Reilly live course **Statistical Testing for LLM Evals**, taught by **Rudrendu Paul** and **Lorenzo Toni**.
+Companion notebooks for the O'Reilly live course **Statistical Testing for LLM Evaluations**, taught by **Rudrendu Paul** and **Lorenzo Toni**.
 
 Your LLM eval says the new version is better. Should you trust it? Most LLM evaluations are underpowered, run the wrong statistical test, or measure a metric that does not survive production. These four notebooks give you the statistical toolkit to catch those failures before you ship. Every notebook runs on synthetic data, so there are no API keys, no accounts, and no setup beyond `pip install`.
 
@@ -15,9 +15,11 @@ Your LLM eval says the new version is better. Should you trust it? Most LLM eval
 | 01 | [Power analysis for LLM evals](notebooks/01-power-analysis-llm-evals.ipynb) | Why 50 examples is statistical vapor. Detecting a 5-point faithfulness gain on a noisy 0-100 judge score needs 847 examples per arm, not 50. Sizing for binary, ordinal, and judge-based metrics. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RudrenduPaul/llm-evals-course/blob/main/notebooks/01-power-analysis-llm-evals.ipynb) |
 | 02 | [Hypothesis testing for LLM metrics](notebooks/02-hypothesis-testing-llm-metrics.ipynb) | The same paired data where a t-test says "no difference" (p=0.10) but Wilcoxon catches the real improvement (p=0.0078). Mann-Whitney, bootstrap CIs, and the multiple-comparisons trap. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RudrenduPaul/llm-evals-course/blob/main/notebooks/02-hypothesis-testing-llm-metrics.ipynb) |
 | 03 | [RAG evaluation case study](notebooks/03-rag-evaluation-case-study.ipynb) | A 14-point retrieval-recall collapse (0.82 to 0.68) hiding behind a steady end-to-end score, and the component-level design that surfaces it. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RudrenduPaul/llm-evals-course/blob/main/notebooks/03-rag-evaluation-case-study.ipynb) |
-| 04 | [Agent evaluation mini-case](notebooks/04-agent-evaluation-mini-case.ipynb) | Agent A wins the benchmark (0.845) but collapses under production constraints (0.705) while Agent B holds steady (0.795) and overtakes it. Multi-level and production-constraint evaluation. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RudrenduPaul/llm-evals-course/blob/main/notebooks/04-agent-evaluation-mini-case.ipynb) |
+| 04 | [Agent evaluation mini-case](notebooks/04-agent-evaluation-mini-case.ipynb) *(bonus)* | Agent A wins the benchmark (0.845) but collapses under production constraints (0.705) while Agent B holds steady (0.795) and overtakes it. Multi-level and production-constraint evaluation. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RudrenduPaul/llm-evals-course/blob/main/notebooks/04-agent-evaluation-mini-case.ipynb) |
 
-> **Note on Colab and private repo:** This repository is private. The Colab badges open a notebook only for accounts that have been granted access to the repo and are signed in to both GitHub and Colab. If a badge does not open, download the `.ipynb` and upload it to Colab directly, or run it locally.
+> **Notebook 04 is a bonus.** The live course covers power analysis, hypothesis testing, and the RAG case in 60 minutes. The agent mini-case is an optional deep-dive to explore on your own.
+
+> **Open in Colab:** click any badge to launch the notebook in Google Colab (no local setup). You can also download the `.ipynb` and upload it to Colab, or run it locally.
 
 All notebooks ship with their outputs saved, so you can read the charts and tables without running a single cell.
 
