@@ -1,4 +1,4 @@
-# Statistical Testing for LLM Evals — companion notebooks
+# Statistical Testing for LLM Evals: companion notebooks
 # Python 3.10+ recommended. All notebooks run on synthetic data; no API keys required.
 #
 # Versions are pinned at the MAJOR level: the upper bound locks out the next
