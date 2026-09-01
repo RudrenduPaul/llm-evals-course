@@ -13,18 +13,18 @@ Use this checklist before promoting any LLM change to production. Each question 
 - Are test cases randomly assigned to conditions, not selected by convenience or recency?
 - Could selection bias explain the result? (Curated "hard" examples, cherry-picked failure cases, or dev-team-authored prompts all introduce it.)
 
-**Red flag:** The test set came from examples the team already knew the model struggled with, or from examples where it succeeded. Neither is a random sample.
+**Red flag:** The test set came from examples the team knew the model struggled with, or from examples where it succeeded. Neither is a random sample.
 
 **If the check fails:** Reconstruct the eval set by random sampling from production logs. If no production logs exist, draw from a representative distribution of expected query types and document the sampling methodology explicitly.
 
 ---
 
-## Q2: Does the metric actually measure what matters?
+## Q2: Does the metric measure what matters?
 
 **What to check:**
 - Is the eval metric a direct measure of user satisfaction, or a proxy that correlates with it only loosely?
-- Has the metric been validated against real production outcomes? (For example: does a higher ROUGE score actually predict that users prefer the output?)
-- Could a model change improve the metric without improving the actual user experience?
+- Has the metric been validated against production outcomes? (For example: does a higher ROUGE score predict that users prefer the output?)
+- Could a model change improve the metric without improving the user experience?
 
 **Red flag:** No one has cross-validated the metric against human preference data, user ratings, or downstream task completion rates. You are optimizing a number with no confirmed link to user value.
 
@@ -36,7 +36,7 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 **What to check:**
 - How many test cases were used? Fewer than 200 is almost always insufficient for detecting meaningful improvements.
-- What effect size can this sample detect at 80% statistical power? A sample of 50 examples yields roughly 20% power for small effects. You need 200+ for moderate effects and 800+ to reliably detect small improvements.
+- What effect size can this sample detect at 80% statistical power? A sample of 50 examples yields roughly 10.4% power for small effects. You need 200+ for moderate effects and 847 to reliably detect small improvements.
 - Did someone run a power calculation, or was the sample size chosen arbitrarily?
 
 **Red flag:** The eval ran on fewer than 100 examples and the reported improvement is smaller than 5 percentage points. At that scale, the result is consistent with noise.
@@ -61,13 +61,13 @@ Use this checklist before promoting any LLM change to production. Each question 
 ## Q5: Will this offline result survive production?
 
 **What to check:**
-- Does the eval dataset reflect real production queries, including edge cases, multilingual inputs, adversarial phrasings, and length distribution?
+- Does the eval dataset reflect production queries, including edge cases, multilingual inputs, adversarial phrasings, and length distribution?
 - Has the system been tested under production constraints: latency budgets, context window limits, concurrent request load, and retrieval latency for RAG pipelines?
 - Is there evidence of eval gaming? The metric improves, but qualitative review of outputs reveals degradation in dimensions the metric does not capture.
 
 **Red flag:** The eval set was authored by the development team without sampling from production logs, and the system has never run under realistic latency or load conditions.
 
-**If the check fails:** Run a shadow deployment or a staged rollout with real traffic before full promotion. Establish a monitoring baseline on the production metric (user ratings, task completion, escalation rate) and set an alert threshold before you ship.
+**If the check fails:** Run a shadow deployment or a staged rollout with production traffic before full promotion. Establish a monitoring baseline on the production metric (user ratings, task completion, escalation rate) and set an alert threshold before you ship.
 
 ---
 
@@ -77,7 +77,7 @@ Use this checklist before promoting any LLM change to production. Each question 
 |---|---|---|
 | Proper randomization? | Selection bias inflates results | Random sample from prod logs or documented distribution |
 | Metric measures what matters? | Proxy optimization with no user benefit | Validated against human judgment |
-| Sample large enough? | Noise mistaken for signal | 200+ examples; 800+ for small effects |
+| Sample large enough? | Noise mistaken for signal | 200+ examples; 847 for small effects |
 | Judge is unbiased? | Systematic preference for length or model family | Position swap + cross-family judge |
 | Offline result survives production? | Eval gaming; distribution shift | Shadow deployment or staged rollout |
 
