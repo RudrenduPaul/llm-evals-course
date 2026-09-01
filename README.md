@@ -8,6 +8,16 @@ Your LLM eval says the new version is better. Should you trust it? Most LLM eval
 
 ---
 
+## Online vs. offline evaluation
+
+Online evaluation, A/B testing on live traffic, carries a statistical playbook: sequential testing, online controlled experiments, established practice. Offline evaluation, the fixed-dataset comparison you run before anything ships, usually does not. This course closes that gap.
+
+![Online vs. offline LLM evaluation](assets/online-vs-offline-evaluation-diagram.png)
+
+Every notebook in this repo runs an offline comparison: a fixed dataset, no live users, old vs. new prompt or model compared side by side. The statistical toolkit here (power analysis, hypothesis testing, effect sizes) is what online experimentation carries and offline evals typically skip.
+
+---
+
 ## Notebooks
 
 | # | Notebook | What it shows | Open in Colab |
@@ -47,7 +57,7 @@ Before you act on any eval result, run it through five questions. The one-page v
 2. Does the metric measure what actually matters in production?
 3. Was the sample large enough to detect the effect you care about?
 4. Is the LLM-as-judge biased by position, length, or model family?
-5. Will the offline result survive production latency, traffic, and drift?
+5. Will the offline result hold once it meets live users, production latency, and drift?
 
 ---
 
