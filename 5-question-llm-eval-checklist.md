@@ -6,20 +6,7 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 ---
 
-## Q1: Was the experiment properly randomized?
-
-**What to check:**
-- Does a valid control group exist, with no treatment applied?
-- Are test cases randomly assigned to conditions, not selected by convenience or recency?
-- Could selection bias explain the result? (Curated "hard" examples, cherry-picked failure cases, or dev-team-authored prompts all introduce it.)
-
-**Red flag:** The test set came from examples the team knew the model struggled with, or from examples where it succeeded. Neither is a random sample.
-
-**If the check fails:** Reconstruct the eval set by random sampling from production logs. If no production logs exist, draw from a representative distribution of expected query types and document the sampling methodology explicitly.
-
----
-
-## Q2: Does the metric measure what matters?
+## Q1: Does the metric measure what matters?
 
 **What to check:**
 - Is the eval metric a direct measure of user satisfaction, or a proxy that correlates with it only loosely?
@@ -29,6 +16,19 @@ Use this checklist before promoting any LLM change to production. Each question 
 **Red flag:** No one has cross-validated the metric against human preference data, user ratings, or downstream task completion rates. You are optimizing a number with no confirmed link to user value.
 
 **If the check fails:** Run a human evaluation on a stratified sample (minimum 100 examples) to calibrate the metric against direct human judgment before using it as a gating criterion.
+
+---
+
+## Q2: Was the experiment randomized?
+
+**What to check:**
+- Does a valid control group exist, with no treatment applied?
+- Are test cases randomly assigned to conditions, not selected by convenience or recency?
+- Could selection bias explain the result? (Curated "hard" examples, cherry-picked failure cases, or dev-team-authored prompts all introduce it.)
+
+**Red flag:** The test set came from examples the team knew the model struggled with, or from examples where it succeeded. Neither is a random sample.
+
+**If the check fails:** Reconstruct the eval set by random sampling from production logs. If no production logs exist, draw from a representative distribution of expected query types and document the sampling methodology explicitly.
 
 ---
 
@@ -45,12 +45,12 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 ---
 
-## Q4: Is the judge biased?
+## Q4: Is the LLM-as-judge unbiased?
 
 **What to check:**
-- If using LLM-as-judge: has position bias been tested? Swap the A/B order and check whether the winner changes.
-- Has verbosity bias been assessed? LLM judges systematically prefer longer outputs regardless of quality.
-- Is self-preference bias present? A model judging outputs from its own model family will favor those outputs over outputs from a different architecture.
+- Has position bias been ruled out? Swap the A/B order and confirm the winner does not change.
+- Has verbosity bias been controlled for? LLM judges systematically prefer longer outputs regardless of quality, so scores should be checked against length-normalized outputs.
+- Has self-preference bias been ruled out? A model judging outputs from its own model family will favor those outputs over outputs from a different architecture, so the judge should be calibrated against a cross-family baseline.
 
 **Red flag:** The same model family serves as both the system under test and the judge, and position bias testing has not been run. Any result from this setup is unreliable.
 
@@ -58,7 +58,7 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 ---
 
-## Q5: Will this offline result survive production?
+## Q5: Will the offline result hold once it meets live users?
 
 **What to check:**
 - Does the eval dataset reflect production queries, including edge cases, multilingual inputs, adversarial phrasings, and length distribution?
@@ -75,11 +75,13 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 | Question | Core risk | Minimum bar |
 |---|---|---|
-| Proper randomization? | Selection bias inflates results | Random sample from prod logs or documented distribution |
 | Metric measures what matters? | Proxy optimization with no user benefit | Validated against human judgment |
+| Proper randomization? | Selection bias inflates results | Random sample from prod logs or documented distribution |
 | Sample large enough? | Noise mistaken for signal | 200+ examples; 847 for small effects |
 | Judge is unbiased? | Systematic preference for length or model family | Position swap + cross-family judge |
 | Offline result survives production? | Eval gaming; distribution shift | Shadow deployment or staged rollout |
+
+If the answer to all five questions is Yes, all five pass: ship. If any answer is No: hold, gather more evidence, or run a causal check.
 
 ---
 
