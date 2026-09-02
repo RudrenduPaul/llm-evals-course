@@ -63,12 +63,6 @@ Before you act on any eval result, run it through five questions. The one-page v
 
 ---
 
-## Companion book
-
-These notebooks preview a slice of *Statistical Evaluation Methods for AI Systems* by Rudrendu Paul (O'Reilly, forthcoming): power analysis, hypothesis testing, RAG and agent evaluation, plus Bayesian decisions, CUPED variance reduction, causal methods for constrained rollouts, LLM-as-judge debiasing, and CI/CD regression testing.
-
----
-
 ## Further reading (all O'Reilly)
 
 - *Practical Statistics for Data Scientists*, Peter Bruce, Andrew Bruce, and Peter Gedeck (O'Reilly)
