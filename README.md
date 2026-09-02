@@ -74,6 +74,7 @@ Before you act on any eval result, run it through five questions. The one-page v
 ## Connect
 
 - LinkedIn: [linkedin.com/in/rudrendupaul](https://www.linkedin.com/in/rudrendupaul)
+- GitHub: [github.com/RudrenduPaul](https://github.com/RudrenduPaul)
 - ORCID: [0009-0008-0141-4690](https://orcid.org/0009-0008-0141-4690)
 - Medium: [medium.com/@rudrendupaul](https://medium.com/@rudrendupaul)
 
