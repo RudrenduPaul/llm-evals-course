@@ -51,7 +51,7 @@ Python 3.10+ is recommended. No API keys are required. All data is synthetic and
 
 ## The 5-question LLM eval checklist
 
-Before you act on any eval result, run it through five questions. The one-page version is in [`5-question-llm-eval-checklist.md`](5-question-llm-eval-checklist.md).
+Before you act on any eval result, run it through five questions. The one-page version is in [`5-question-diagnostic-framework.md`](5-question-diagnostic-framework.md).
 
 ![The 5-question diagnostic framework](assets/five-question-diagnostic-diagram.png)
 
