@@ -1,4 +1,4 @@
-# The 5-Question LLM Eval Checklist
+# 5-Question Diagnostic Framework
 
 ![The 5-Question Diagnostic Framework](assets/five-question-diagnostic-diagram.png)
 
