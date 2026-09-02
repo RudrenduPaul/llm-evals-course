@@ -1,6 +1,6 @@
 # Statistical Testing for LLM Evaluations
 
-*Design Experiments to Measure Gen AI Features at Scale*
+*Design experiments that catch the improvements worth shipping*
 
 Companion notebooks for the O'Reilly live course **Statistical Testing for LLM Evaluations**, taught by **Rudrendu Paul**.
 
