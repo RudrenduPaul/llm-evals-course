@@ -63,6 +63,22 @@ Before you act on any eval result, run it through five questions. The one-page v
 
 ---
 
+## FAQ
+
+**How many examples do you need to detect a change in an LLM eval?**
+It depends on the effect size and the metric's noise. Detecting a 5-point faithfulness gain on a noisy 0-100 judge score needs 847 examples per arm, not the 50 most teams run. Notebook 01 covers power analysis for binary, ordinal, and judge-based metrics.
+
+**Which statistical test catches an LLM improvement a t-test misses?**
+On paired eval data, a Wilcoxon signed-rank test can catch an improvement a t-test reports as no difference (p=0.10 for the t-test vs. p=0.0078 for Wilcoxon in notebook 02). Notebook 02 also covers Mann-Whitney, bootstrap confidence intervals, and the multiple-comparisons trap.
+
+**Can a steady end-to-end RAG score hide a retrieval regression?**
+Yes. Notebook 03 works through a 14-point retrieval-recall collapse (0.82 to 0.68) hidden behind a stable end-to-end score, and the component-level evaluation design that surfaces it.
+
+**Does an agent that wins a benchmark hold up in production?**
+Not always. Notebook 04's mini-case shows Agent A win the benchmark (0.845) then drop under production constraints (0.705), while Agent B holds steady (0.795) and overtakes it.
+
+---
+
 ## Further reading (all O'Reilly)
 
 - *Practical Statistics for Data Scientists*, Peter Bruce, Andrew Bruce, and Peter Gedeck (O'Reilly)
