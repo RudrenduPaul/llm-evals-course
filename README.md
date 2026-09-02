@@ -63,10 +63,11 @@ Before you act on any eval result, run it through five questions. The one-page v
 
 ---
 
-## Further reading
+## Further reading (all O'Reilly)
 
-- Offline evals: *Evals for AI Engineers*, Shreya Shankar and Hamel Husain (2024)
-- Online experiments: *Trustworthy Online Controlled Experiments*, Ron Kohavi, Diane Tang, and Ya Xu (2020)
+- *Practical Statistics for Data Scientists*, Peter Bruce, Andrew Bruce, and Peter Gedeck (O'Reilly)
+- *Evals for AI Engineers*, Shreya Shankar and Hamel Husain (O'Reilly, 2026)
+- *AI Engineering: Building Applications with Foundation Models*, Chip Huyen (O'Reilly, 2025)
 
 ---
 
