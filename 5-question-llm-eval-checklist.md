@@ -85,8 +85,6 @@ Use this checklist before promoting any LLM change to production. Each question 
 
 *From the O'Reilly Live Course: **"Statistical Testing for LLM Evaluations: Design experiments that catch the improvements worth shipping"** by Rudrendu Paul.*
 
-*Companion book: **Statistical Evaluation Methods for AI Systems** by Rudrendu Paul (O'Reilly, forthcoming): 12 chapters, 3 appendices, runnable Python notebooks per chapter.*
-
 ---
 
 **Sources:**
