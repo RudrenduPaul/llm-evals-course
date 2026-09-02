@@ -1,5 +1,7 @@
 # The 5-Question LLM Eval Checklist
 
+![The 5-Question Diagnostic Framework](assets/five-question-diagnostic-diagram.png)
+
 **Before you ship, ask these five questions.**
 
 Use this checklist before promoting any LLM change to production. Each question targets a specific failure mode that offline evals routinely miss. If any red flag fires, stop and fix the underlying problem before shipping.
